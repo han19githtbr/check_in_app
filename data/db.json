@@ -1,0 +1,69 @@
+{
+  "events": [
+    {
+      "id": "seed-event-summit-2026",
+      "title": "Summit 2026",
+      "details": "Evento demonstrativo com fluxo completo de inscricao, kit e reclamacao.",
+      "slug": "summit-2026",
+      "maximumAttendees": 120
+    }
+  ],
+  "users": [
+    {
+      "id": "seed-admin-user",
+      "name": "Admin Demo",
+      "email": "admin@gmail.com",
+      "role": "admin",
+      "avatarUrl": null,
+      "provider": "google",
+      "createdAt": "2026-04-22T12:34:32.901Z",
+      "updatedAt": "2026-04-22T12:34:32.901Z"
+    },
+    {
+      "id": "seed-participant-user",
+      "name": "Participante Demo",
+      "email": "participante@gmail.com",
+      "role": "participant",
+      "avatarUrl": null,
+      "provider": "google",
+      "createdAt": "2026-04-22T12:44:32.901Z",
+      "updatedAt": "2026-04-22T12:44:32.901Z"
+    }
+  ],
+  "sessions": [],
+  "attendees": [
+    {
+      "id": "seed-attendee-participant",
+      "name": "Participante Demo",
+      "email": "participante@gmail.com",
+      "eventId": "seed-event-summit-2026",
+      "userId": "seed-participant-user",
+      "welcomeKitDeliveredAt": null,
+      "createdAt": "2026-04-22T13:34:32.901Z"
+    }
+  ],
+  "checkIns": [],
+  "complaints": [
+    {
+      "id": "seed-complaint-kit",
+      "userId": "seed-participant-user",
+      "attendeeId": "seed-attendee-participant",
+      "eventId": "seed-event-summit-2026",
+      "message": "Nao recebi meu kit de boas-vindas na retirada.",
+      "status": "open",
+      "createdAt": "2026-04-22T15:04:32.901Z",
+      "resolvedAt": null
+    }
+  ],
+  "emailLogs": [
+    {
+      "id": "seed-email-log",
+      "to": "participante@gmail.com",
+      "subject": "Inscricao confirmada: Summit 2026",
+      "status": "skipped",
+      "provider": "resend",
+      "errorMessage": "Seed inicial sem envio real de e-mail.",
+      "createdAt": "2026-04-22T13:35:32.901Z"
+    }
+  ]
+}
