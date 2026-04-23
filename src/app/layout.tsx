@@ -26,7 +26,7 @@ export default async function RootLayout({
               <span className="brand-mark" />
               <div>
                 <strong>Next Pass.in</strong>
-                <small>Eventos, kits e atendimento</small>
+                <small>Eventos, kits e atendimento em um fluxo mais elegante</small>
               </div>
             </Link>
 

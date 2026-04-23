@@ -19,33 +19,54 @@ export default async function AdminPage() {
   const dashboard = await getAdminDashboard();
 
   return (
-    <main className="shell">
-      <section className="hero">
-        <span className="eyebrow">Painel administrativo</span>
-        <h1>Gestao completa da plataforma</h1>
-        <p>
-          Aqui o administrador controla eventos, participantes, check-in, entrega de kits e reclamacoes enviadas
-          pelos usuarios.
-        </p>
+    <main className="shell page-flow">
+      <section className="hero hero-grid">
+        <div className="hero-content">
+          <span className="eyebrow">Painel administrativo</span>
+          <h1>Gestao completa da plataforma</h1>
+          <p className="hero-lead">
+            Aqui o administrador controla eventos, participantes, check-in, entrega de kits e reclamacoes enviadas
+            pelos usuarios.
+          </p>
 
-        <div className="metric-row">
-          <article className="metric-card">
-            <span>Eventos</span>
-            <strong>{dashboard.metrics.totalEvents}</strong>
-          </article>
-          <article className="metric-card">
-            <span>Usuarios</span>
-            <strong>{dashboard.metrics.totalUsers}</strong>
-          </article>
-          <article className="metric-card">
-            <span>Kits pendentes</span>
-            <strong>{dashboard.metrics.pendingWelcomeKits}</strong>
-          </article>
-          <article className="metric-card">
-            <span>Reclamacoes abertas</span>
-            <strong>{dashboard.metrics.openComplaints}</strong>
-          </article>
+          <div className="metric-row">
+            <article className="metric-card">
+              <span>Eventos</span>
+              <strong>{dashboard.metrics.totalEvents}</strong>
+            </article>
+            <article className="metric-card">
+              <span>Usuarios</span>
+              <strong>{dashboard.metrics.totalUsers}</strong>
+            </article>
+            <article className="metric-card">
+              <span>Kits pendentes</span>
+              <strong>{dashboard.metrics.pendingWelcomeKits}</strong>
+            </article>
+            <article className="metric-card">
+              <span>Reclamacoes abertas</span>
+              <strong>{dashboard.metrics.openComplaints}</strong>
+            </article>
+          </div>
         </div>
+
+        <aside className="hero-panel">
+          <article className="spotlight-card">
+            <strong>Operacao em tempo real</strong>
+            <p className="copy-muted">Acompanhe capacidade, pendencias e mensagens sem perder o contexto da pagina.</p>
+          </article>
+          <article className="spotlight-card">
+            <strong>Prioridade do dia</strong>
+            <p className="copy-muted">
+              {dashboard.metrics.openComplaints > 0
+                ? `${dashboard.metrics.openComplaints} reclamacao(oes) aguardando tratativa.`
+                : "Nenhuma reclamacao aberta no momento."}
+            </p>
+          </article>
+          <article className="spotlight-card">
+            <strong>Pronto para cadastro</strong>
+            <p className="copy-muted">Crie novos eventos com um formulario mais limpo e melhor distribuido no mobile.</p>
+          </article>
+        </aside>
       </section>
 
       <section className="grid two">

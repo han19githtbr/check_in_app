@@ -26,29 +26,51 @@ export default async function EventPage({ params }: Props) {
     const { event } = eventResponse;
 
     return (
-      <main className="shell">
-        <section className="hero">
-          <span className="eyebrow">Painel do evento</span>
-          <h1>{event.title}</h1>
-          <p>{event.details}</p>
+      <main className="shell page-flow">
+        <section className="hero hero-grid">
+          <div className="hero-content">
+            <span className="eyebrow">Painel do evento</span>
+            <h1>{event.title}</h1>
+            <p className="hero-lead">{event.details}</p>
 
-          <div className="metric-row">
-            <article className="metric-card">
-              <span>Capacidade</span>
-              <strong>{event.maximumAttendees}</strong>
-            </article>
+            <div className="metric-row">
+              <article className="metric-card">
+                <span>Capacidade</span>
+                <strong>{event.maximumAttendees}</strong>
+              </article>
 
-            <article className="metric-card">
-              <span>Inscritos</span>
-              <strong>{event.attendeesAmount}</strong>
-            </article>
+              <article className="metric-card">
+                <span>Inscritos</span>
+                <strong>{event.attendeesAmount}</strong>
+              </article>
+            </div>
+
+            <div className="hero-actions">
+              <Link className="button-secondary" href="/">
+                Voltar ao dashboard
+              </Link>
+            </div>
           </div>
 
-          <div className="actions">
-            <Link className="button-secondary" href="/">
-              Voltar ao dashboard
-            </Link>
-          </div>
+          <aside className="hero-panel">
+            <article className="spotlight-card">
+              <strong>Visao operacional</strong>
+              <p className="copy-muted">Cadastre pessoas, acompanhe check-in e entregue kits sem trocar de tela.</p>
+            </article>
+
+            <div className="detail-grid">
+              <article className="data-card">
+                <span>Ocupacao</span>
+                <strong>{event.attendeesAmount}/{event.maximumAttendees}</strong>
+                <p className="copy-muted">Capacidade atual do evento.</p>
+              </article>
+              <article className="data-card">
+                <span>Disponibilidade</span>
+                <strong>{Math.max(event.maximumAttendees - event.attendeesAmount, 0)}</strong>
+                <p className="copy-muted">Vagas restantes no momento.</p>
+              </article>
+            </div>
+          </aside>
         </section>
 
         <section className="grid two">

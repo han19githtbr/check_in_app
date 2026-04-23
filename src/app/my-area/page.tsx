@@ -25,14 +25,34 @@ export default async function MyAreaPage() {
   });
 
   return (
-    <main className="shell">
-      <section className="hero">
-        <span className="eyebrow">Area do participante</span>
-        <h1>{dashboard.user.name}</h1>
-        <p>
-          Consulte em quais eventos voce esta inscrito, acompanhe o status do seu kit de boas-vindas e envie
-          reclamacoes quando precisar.
-        </p>
+    <main className="shell page-flow">
+      <section className="hero hero-grid">
+        <div className="hero-content">
+          <span className="eyebrow">Area do participante</span>
+          <h1>{dashboard.user.name}</h1>
+          <p className="hero-lead">
+            Consulte em quais eventos voce esta inscrito, acompanhe o status do seu kit de boas-vindas e envie
+            reclamacoes quando precisar.
+          </p>
+        </div>
+
+        <aside className="hero-panel">
+          <div className="kpi-strip">
+            <article className="stat-card">
+              <span>Inscricoes</span>
+              <strong>{dashboard.registrations.length}</strong>
+            </article>
+            <article className="stat-card">
+              <span>Reclamacoes</span>
+              <strong>{dashboard.complaints.length}</strong>
+            </article>
+          </div>
+
+          <article className="spotlight-card">
+            <strong>Status centralizado</strong>
+            <p className="copy-muted">Tudo o que importa para o participante fica no mesmo lugar, com leitura mais clara.</p>
+          </article>
+        </aside>
       </section>
 
       <section className="grid two">

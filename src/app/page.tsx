@@ -18,15 +18,24 @@ export default async function HomePage({ searchParams }: Props) {
   const authError = resolvedSearchParams.authError;
 
   return (
-    <main className="shell">
+    <main className="shell page-flow">
       <section className="hero hero-grid">
-        <div>
+        <div className="hero-content">
           <span className="eyebrow">Pass.in Experience</span>
-          <h1>Gestao de eventos com acesso Google, portal do participante e painel administrativo completo.</h1>
-          <p>
+          <h1>Operacao de eventos com visual mais atual, acesso instantaneo e controle centralizado.</h1>
+          <p className="hero-lead">
             O projeto agora cobre autenticacao com Gmail, inscricoes com confirmacao por e-mail, controle de
             check-in, entrega de kit de boas-vindas e canal de reclamacoes para cada participante.
           </p>
+
+          <div className="hero-actions">
+            <a className="button" href="/api/auth/google?role=admin">
+              Entrar como admin
+            </a>
+            <a className="button-secondary" href="/api/auth/google?role=participant">
+              Acessar area do participante
+            </a>
+          </div>
 
           <div className="metric-row">
             <article className="metric-card">
@@ -38,52 +47,73 @@ export default async function HomePage({ searchParams }: Props) {
               <span>Inscricoes</span>
               <strong>{totalAttendees}</strong>
             </article>
+
+            <article className="metric-card">
+              <span>Perfis</span>
+              <strong>2</strong>
+            </article>
           </div>
         </div>
 
-        <div className="panel padded surface-highlight">
-          <div className="section-header">
-            <div>
-              <h2>Entrar na plataforma</h2>
-              <p className="copy-muted">Escolha o perfil correto para acessar as funcoes certas.</p>
+        <div className="hero-panel">
+          <div className="panel padded surface-highlight">
+            <div className="section-header">
+              <div>
+                <h2>Entrar na plataforma</h2>
+                <p className="copy-muted">Escolha o perfil correto para acessar as funcoes certas.</p>
+              </div>
             </div>
+
+            {authError ? <p className="feedback error">{authError}</p> : null}
+
+            <div className="login-grid">
+              <article className="login-card">
+                <h3>Administrador</h3>
+                <p className="copy-muted">
+                  Cadastra eventos, registra participantes, faz check-in, entrega kits e responde reclamacoes.
+                </p>
+                <a className="button" href="/api/auth/google?role=admin">
+                  Entrar com Gmail
+                </a>
+              </article>
+
+              <article className="login-card">
+                <h3>Participante</h3>
+                <p className="copy-muted">
+                  Consulta inscricoes, acompanha o evento vinculado e envia reclamacoes direto ao administrador.
+                </p>
+                <a className="button-secondary" href="/api/auth/google?role=participant">
+                  Acessar minha area
+                </a>
+              </article>
+            </div>
+
+            {session.authenticated && session.user ? (
+              <div className="feedback success">
+                Sessao ativa para {session.user.email}.{" "}
+                <Link className="inline-link" href={session.user.role === "admin" ? "/admin" : "/my-area"}>
+                  Abrir painel
+                </Link>
+              </div>
+            ) : null}
           </div>
 
-          {authError ? <p className="feedback error">{authError}</p> : null}
-
-          <div className="login-grid">
-            <article className="login-card">
-              <h3>Administrador</h3>
-              <p className="copy-muted">
-                Cadastra eventos, registra participantes, faz check-in, entrega kits e responde reclamacoes.
-              </p>
-              <a className="button" href="/api/auth/google?role=admin">
-                Entrar com Gmail
-              </a>
+          <div className="spotlight-stack">
+            <article className="spotlight-card">
+              <strong>Fluxo mais objetivo</strong>
+              <p className="copy-muted">Acoes principais aparecem logo no topo e com melhor leitura em telas pequenas.</p>
             </article>
 
-            <article className="login-card">
-              <h3>Participante</h3>
-              <p className="copy-muted">
-                Consulta inscricoes, acompanha o evento vinculado e envia reclamacoes direto ao administrador.
-              </p>
-              <a className="button-secondary" href="/api/auth/google?role=participant">
-                Acessar minha area
-              </a>
+            <article className="spotlight-card">
+              <strong>Visual mais moderno</strong>
+              <p className="copy-muted">Superficies escuras, contraste refinado e hierarquia mais clara entre blocos.</p>
+            </article>
+
+            <article className="spotlight-card">
+              <strong>UI preparada para mobile</strong>
+              <p className="copy-muted">Cards e botoes se reorganizam melhor para navegacao confortavel no celular.</p>
             </article>
           </div>
-
-          {session.authenticated && session.user ? (
-            <div className="feedback success">
-              Sessao ativa para {session.user.email}.{" "}
-              <Link
-                className="inline-link"
-                href={session.user.role === "admin" ? "/admin" : "/my-area"}
-              >
-                Abrir painel
-              </Link>
-            </div>
-          ) : null}
         </div>
       </section>
 

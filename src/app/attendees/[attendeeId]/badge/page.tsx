@@ -29,17 +29,37 @@ export default async function AttendeeBadgePage({ params }: Props) {
     }
 
     return (
-      <main className="shell">
-        <section className="hero">
-          <span className="eyebrow">Cracha digital</span>
-          <h1>{badgeResponse.badge.name}</h1>
-          <p>Use este cartao para validar a entrada da pessoa participante e acompanhar o status do check-in.</p>
+      <main className="shell page-flow">
+        <section className="hero hero-grid">
+          <div className="hero-content">
+            <span className="eyebrow">Cracha digital</span>
+            <h1>{badgeResponse.badge.name}</h1>
+            <p className="hero-lead">
+              Use este cartao para validar a entrada da pessoa participante e acompanhar o status do check-in.
+            </p>
 
-          <div className="actions">
-            <Link className="button-secondary" href={`/events/${badgeResponse.badge.eventId}`}>
-              Voltar ao evento
-            </Link>
+            <div className="hero-actions">
+              <Link className="button-secondary" href={`/events/${badgeResponse.badge.eventId}`}>
+                Voltar ao evento
+              </Link>
+            </div>
           </div>
+
+          <aside className="hero-panel">
+            <article className="spotlight-card">
+              <strong>Status do acesso</strong>
+              <p className="copy-muted">
+                {attendee.checkedInAt
+                  ? `Check-in confirmado em ${formatDateTime(attendee.checkedInAt)}.`
+                  : "Participante ainda aguardando validacao de entrada."}
+              </p>
+            </article>
+            <article className="data-card">
+              <span>Evento vinculado</span>
+              <strong>{badgeResponse.badge.eventId}</strong>
+              <p className="copy-muted">Identificador tecnico do evento para consultas e suporte.</p>
+            </article>
+          </aside>
         </section>
 
         <section className="grid two">
